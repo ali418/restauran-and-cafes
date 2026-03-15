@@ -48,9 +48,11 @@ axiosInstance.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config;
+    const url = typeof originalRequest?.url === 'string' ? originalRequest.url : '';
+    const isAuthRequest = url.includes('/auth/login') || url.includes('/auth/refresh-token');
     
     // Handle 401 Unauthorized error (token expired)
-    if (error.response && error.response.status === 401 && !originalRequest._retry) {
+    if (error.response && error.response.status === 401 && !originalRequest._retry && !isAuthRequest) {
       originalRequest._retry = true;
       
       try {

@@ -66,14 +66,16 @@ const Login = () => {
     }));
   }, [location.search]);
 
-  const demoUsername = 'admin';
-  const demoPassword = 'admin123';
+  const demoAccounts = [
+    { username: 'team', password: 'admin' },
+    { username: 'admin', password: 'admin123' },
+  ];
 
-  const fillDemo = () => {
+  const fillDemo = (username, password) => {
     setFormData((prev) => ({
       ...prev,
-      username: demoUsername,
-      password: demoPassword,
+      username,
+      password,
     }));
   };
   
@@ -246,20 +248,36 @@ const Login = () => {
             {i18n.language && i18n.language.startsWith('ar') ? 'بيانات تجربة (اضغط للتعبئة):' : 'Demo credentials (click to fill):'}
           </Typography>
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} sx={{ mt: 1 }}>
-            <Chip
-              onClick={fillDemo}
-              clickable
-              label={(i18n.language && i18n.language.startsWith('ar') ? 'اسم المستخدم: ' : 'Username: ') + demoUsername}
-              sx={{ bgcolor: '#111', color: '#fff', fontWeight: 900 }}
-            />
-            <Chip
-              onClick={fillDemo}
-              clickable
-              label={(i18n.language && i18n.language.startsWith('ar') ? 'كلمة المرور: ' : 'Password: ') + demoPassword}
-              sx={{ bgcolor: '#111', color: '#fff', fontWeight: 900 }}
-            />
+            {demoAccounts.map((acc) => (
+              <React.Fragment key={acc.username}>
+                <Chip
+                  onClick={() => fillDemo(acc.username, acc.password)}
+                  clickable
+                  label={(i18n.language && i18n.language.startsWith('ar') ? 'اسم المستخدم: ' : 'Username: ') + acc.username}
+                  sx={{ bgcolor: '#111', color: '#fff', fontWeight: 900 }}
+                />
+                <Chip
+                  onClick={() => fillDemo(acc.username, acc.password)}
+                  clickable
+                  label={(i18n.language && i18n.language.startsWith('ar') ? 'كلمة المرور: ' : 'Password: ') + acc.password}
+                  sx={{ bgcolor: '#111', color: '#fff', fontWeight: 900 }}
+                />
+              </React.Fragment>
+            ))}
           </Stack>
         </Box>
+        <Grid container sx={{ mt: 1 }}>
+          <Grid item xs>
+            <Link
+              component={RouterLink}
+              to="/"
+              variant="body2"
+              sx={{ color: '#111', textDecoration: 'none', fontWeight: 800, '&:hover': { textDecoration: 'underline' } }}
+            >
+              {i18n.language && i18n.language.startsWith('ar') ? 'ميزات النظام' : 'System Features'}
+            </Link>
+          </Grid>
+        </Grid>
         <Grid container>
           <Grid item xs>
             <Link 

@@ -42,12 +42,14 @@ const Landing = () => {
 
   const isArabic = (document?.documentElement?.dir || '').toLowerCase() === 'rtl';
 
-  const demoUsername = 'admin';
-  const demoPassword = 'admin123';
+  const demoAccounts = [
+    { username: 'team', password: 'admin' },
+    { username: 'admin', password: 'admin123' },
+  ];
 
-  const goToLoginWithDemo = () => {
-    const u = encodeURIComponent(demoUsername);
-    const p = encodeURIComponent(demoPassword);
+  const goToLoginWithDemo = (username, password) => {
+    const u = encodeURIComponent(username);
+    const p = encodeURIComponent(password);
     navigate(`/login?u=${u}&p=${p}`);
   };
 
@@ -175,18 +177,22 @@ const Landing = () => {
                     {isArabic ? 'حساب تجربة (اضغط للتعبئة تلقائياً):' : 'Demo account (click to auto-fill):'}
                   </Typography>
                   <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>
-                    <Chip
-                      onClick={goToLoginWithDemo}
-                      clickable
-                      label={(isArabic ? 'اسم المستخدم: ' : 'Username: ') + demoUsername}
-                      sx={{ bgcolor: '#ffffff', color: '#000', fontWeight: 800 }}
-                    />
-                    <Chip
-                      onClick={goToLoginWithDemo}
-                      clickable
-                      label={(isArabic ? 'كلمة المرور: ' : 'Password: ') + demoPassword}
-                      sx={{ bgcolor: '#ffffff', color: '#000', fontWeight: 800 }}
-                    />
+                    {demoAccounts.map((acc) => (
+                      <React.Fragment key={acc.username}>
+                        <Chip
+                          onClick={() => goToLoginWithDemo(acc.username, acc.password)}
+                          clickable
+                          label={(isArabic ? 'اسم المستخدم: ' : 'Username: ') + acc.username}
+                          sx={{ bgcolor: '#111', color: '#fff', fontWeight: 900 }}
+                        />
+                        <Chip
+                          onClick={() => goToLoginWithDemo(acc.username, acc.password)}
+                          clickable
+                          label={(isArabic ? 'كلمة المرور: ' : 'Password: ') + acc.password}
+                          sx={{ bgcolor: '#111', color: '#fff', fontWeight: 900 }}
+                        />
+                      </React.Fragment>
+                    ))}
                   </Stack>
                 </Box>
               </Stack>
@@ -332,4 +338,3 @@ const Landing = () => {
 };
 
 export default Landing;
-
