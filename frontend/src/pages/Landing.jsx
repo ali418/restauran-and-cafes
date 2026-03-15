@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import {
   Box,
   Button,
@@ -25,8 +26,10 @@ import {
   Storefront,
   VerifiedUser,
 } from '@mui/icons-material';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
 const Landing = () => {
+  const { i18n } = useTranslation();
   const navigate = useNavigate();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
@@ -40,7 +43,7 @@ const Landing = () => {
     navigate('/dashboard', { replace: true });
   }, [isAuthenticated, navigate, user?.role]);
 
-  const isArabic = (document?.documentElement?.dir || '').toLowerCase() === 'rtl';
+  const isArabic = Boolean(i18n.language && i18n.language.startsWith('ar'));
 
   const demoAccounts = [
     { username: 'team', password: 'admin' },
@@ -110,6 +113,9 @@ const Landing = () => {
     <Box sx={{ minHeight: '100vh', background: 'linear-gradient(180deg, #0b0b0b 0%, #121212 45%, #ffffff 45%)' }}>
       <Box sx={{ pt: { xs: 8, md: 10 }, pb: { xs: 6, md: 8 } }}>
         <Container maxWidth="lg">
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+            <LanguageSwitcher />
+          </Box>
           <Grid container spacing={4} alignItems="center">
             <Grid item xs={12} md={7}>
               <Stack spacing={2}>
