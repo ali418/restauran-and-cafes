@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import { useLocation, useNavigate, Link as RouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { saveAuthData } from '../../services/authService';
@@ -17,6 +17,8 @@ import {
   IconButton,
   CircularProgress,
   Alert,
+  Chip,
+  Stack,
 } from '@mui/material';
 import {
   LockOutlined as LockOutlinedIcon,
@@ -32,6 +34,7 @@ import apiService from '../../api/apiService';
 const Login = () => {
   const { t, i18n } = useTranslation('auth');
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   
   const [formData, setFormData] = useState({
@@ -48,6 +51,31 @@ const Login = () => {
   useEffect(() => {
     document.title = t('cafesundus.login', { ns: 'cafesundus' });
   }, [i18n.language, t]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search || '');
+    const u = params.get('u') || params.get('username');
+    const p = params.get('p') || params.get('password');
+
+    if (!u && !p) return;
+
+    setFormData((prev) => ({
+      ...prev,
+      username: typeof u === 'string' ? u : prev.username,
+      password: typeof p === 'string' ? p : prev.password,
+    }));
+  }, [location.search]);
+
+  const demoUsername = 'admin';
+  const demoPassword = 'admin123';
+
+  const fillDemo = () => {
+    setFormData((prev) => ({
+      ...prev,
+      username: demoUsername,
+      password: demoPassword,
+    }));
+  };
   
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
@@ -212,6 +240,26 @@ const Login = () => {
         >
           {loading ? <CircularProgress size={24} color="inherit" /> : t('signIn')}
         </Button>
+
+        <Box sx={{ mt: 1.5, mb: 0.5 }}>
+          <Typography sx={{ fontWeight: 800, color: '#000' }}>
+            {i18n.language && i18n.language.startsWith('ar') ? 'بيانات تجربة (اضغط للتعبئة):' : 'Demo credentials (click to fill):'}
+          </Typography>
+          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} sx={{ mt: 1 }}>
+            <Chip
+              onClick={fillDemo}
+              clickable
+              label={(i18n.language && i18n.language.startsWith('ar') ? 'اسم المستخدم: ' : 'Username: ') + demoUsername}
+              sx={{ bgcolor: '#111', color: '#fff', fontWeight: 900 }}
+            />
+            <Chip
+              onClick={fillDemo}
+              clickable
+              label={(i18n.language && i18n.language.startsWith('ar') ? 'كلمة المرور: ' : 'Password: ') + demoPassword}
+              sx={{ bgcolor: '#111', color: '#fff', fontWeight: 900 }}
+            />
+          </Stack>
+        </Box>
         <Grid container>
           <Grid item xs>
             <Link 

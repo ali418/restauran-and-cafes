@@ -21,6 +21,7 @@ import AuthLayout from './components/layout/AuthLayout';
 import Login from './pages/auth/Login';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import ResetPassword from './pages/auth/ResetPassword';
+import Landing from './pages/Landing';
 
 // Main Pages - Lazy loaded for better performance
 const Dashboard = lazy(() => import('./pages/Dashboard'));
@@ -370,14 +371,11 @@ const App = () => {
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/reset-password" element={<ResetPassword />} />
             </Route>
+
+            <Route path="/" element={<Landing />} />
             
             {/* Main Routes - Wrapped with Suspense for lazy loading */}
             <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
-              <Route path="/" element={
-                <RoleProtectedRoute allowedRoles={['admin', 'manager', 'storekeeper', 'accountant', 'staff']}>
-                  <Suspense fallback={<LoadingFallback />}><Dashboard /></Suspense>
-                </RoleProtectedRoute>
-              } />
               <Route path="/dashboard" element={
                 <RoleProtectedRoute allowedRoles={['admin', 'manager', 'storekeeper', 'accountant', 'staff']}>
                   <Suspense fallback={<LoadingFallback />}><Dashboard /></Suspense>
