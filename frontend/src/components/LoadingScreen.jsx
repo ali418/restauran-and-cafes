@@ -61,7 +61,7 @@ const LoadingScreen = () => {
             textShadow: '0px 2px 4px rgba(0,0,0,0.1)',
           }}
         >
-          Cafe Sundus
+          restauran and cafes
         </Typography>
         
         <CircularProgress 

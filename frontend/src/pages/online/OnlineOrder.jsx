@@ -1936,7 +1936,7 @@ const OnlineOrder = () => {
                 letterSpacing: '0.5px'
               }}
             >
-              Cafe Sundus
+              restauran and cafes
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>

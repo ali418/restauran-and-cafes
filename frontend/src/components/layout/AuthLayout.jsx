@@ -56,7 +56,7 @@ const AuthLayout = () => {
               letterSpacing: '1px',
             }}
           >
-            {storeSettings?.name || 'Cafe Sundus'}
+            {storeSettings?.name || 'restauran and cafes'}
           </Typography>
         </Box>
 
@@ -92,7 +92,7 @@ const AuthLayout = () => {
           }}
         >
           <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)' }}>
-            {(storeSettings?.name || 'Cafe Sundus')} © {new Date().getFullYear()}
+            {(storeSettings?.name || 'restauran and cafes')} © {new Date().getFullYear()}
           </Typography>
         </Box>
       </Box>

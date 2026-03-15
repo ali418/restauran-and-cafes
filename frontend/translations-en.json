@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Grocery Management System",
+    "appName": "restauran and cafes",
     "loading": "Loading...",
     "error": "Error",
     "success": "Success",
@@ -131,7 +131,7 @@
   },
   "dashboard": {
     "dashboard": "Dashboard",
-    "welcome": "Welcome to Grocery Management System",
+    "welcome": "Welcome to restauran and cafes",
     "todaySales": "Today's Sales",
     "totalSales": "Total Sales",
     "totalCustomers": "Total Customers",
