@@ -131,8 +131,8 @@ const Login = () => {
         width: '100%',
       }}
     >
-      <Avatar sx={{ m: 1, bgcolor: '#d4af37', width: 56, height: 56 }}>
-        <LockOutlinedIcon sx={{ fontSize: 30, color: '#000' }} />
+      <Avatar sx={{ m: 1, bgcolor: '#e3a575', width: 56, height: 56 }}>
+        <LockOutlinedIcon sx={{ fontSize: 30, color: '#114188' }} />
       </Avatar>
       <Typography component="h1" variant="h5" sx={{ fontFamily: '"Tajawal", sans-serif', fontWeight: 'bold', mb: 3 }}>
         {t('login')}
@@ -160,11 +160,11 @@ const Login = () => {
           sx={{
             '& .MuiOutlinedInput-root': {
               '&.Mui-focused fieldset': {
-                borderColor: '#d4af37',
+                borderColor: '#114188',
               },
             },
             '& .MuiInputLabel-root.Mui-focused': {
-              color: '#d4af37',
+              color: '#114188',
             },
           }}
         />
@@ -196,11 +196,11 @@ const Login = () => {
           sx={{
             '& .MuiOutlinedInput-root': {
               '&.Mui-focused fieldset': {
-                borderColor: '#d4af37',
+                borderColor: '#114188',
               },
             },
             '& .MuiInputLabel-root.Mui-focused': {
-              color: '#d4af37',
+              color: '#114188',
             },
           }}
         />
@@ -212,9 +212,9 @@ const Login = () => {
               onChange={handleChange}
               disabled={loading}
               sx={{
-                color: '#d4af37',
+                color: '#114188',
                 '&.Mui-checked': {
-                  color: '#d4af37',
+                  color: '#114188',
                 },
               }}
             />
@@ -228,13 +228,13 @@ const Login = () => {
           sx={{
             mt: 3,
             mb: 2,
-            bgcolor: '#d4af37',
-            color: '#000',
+            bgcolor: '#114188',
+            color: '#fff',
             fontWeight: 'bold',
             fontSize: '1.1rem',
             py: 1.2,
             '&:hover': {
-              bgcolor: '#b89628',
+              bgcolor: '#0d2f62',
             },
             fontFamily: '"Tajawal", sans-serif',
           }}
@@ -254,13 +254,13 @@ const Login = () => {
                   onClick={() => fillDemo(acc.username, acc.password)}
                   clickable
                   label={(i18n.language && i18n.language.startsWith('ar') ? 'اسم المستخدم: ' : 'Username: ') + acc.username}
-                  sx={{ bgcolor: '#111', color: '#fff', fontWeight: 900 }}
+                  sx={{ bgcolor: '#114188', color: '#fff', fontWeight: 900 }}
                 />
                 <Chip
                   onClick={() => fillDemo(acc.username, acc.password)}
                   clickable
                   label={(i18n.language && i18n.language.startsWith('ar') ? 'كلمة المرور: ' : 'Password: ') + acc.password}
-                  sx={{ bgcolor: '#111', color: '#fff', fontWeight: 900 }}
+                  sx={{ bgcolor: '#114188', color: '#fff', fontWeight: 900 }}
                 />
               </React.Fragment>
             ))}
@@ -284,7 +284,7 @@ const Login = () => {
               component={RouterLink} 
               to="/forgot-password" 
               variant="body2"
-              sx={{ color: '#d4af37', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
+              sx={{ color: '#114188', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
             >
               {t('forgotYourPassword')}
             </Link>

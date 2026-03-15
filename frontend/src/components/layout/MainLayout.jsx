@@ -96,7 +96,7 @@ const AppBarStyled = styled(AppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  background: 'linear-gradient(135deg, #121212 0%, #2c2c2c 100%)',
+  background: 'linear-gradient(135deg, #114188 0%, #0d2f62 100%)',
   borderRadius: '0 0 16px 16px',
   boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
   // إزالة قواعد الهوامش القديمة لأن CSS Grid يتولى التخطيط الآن
@@ -120,9 +120,9 @@ const DrawerStyled = styled(Drawer, {
   // تأكد من أن الورقة تشارك في التخطيط وليست مثبتة فوق المحتوى
   '& .MuiDrawer-paper': { 
     position: 'relative',
-    background: 'linear-gradient(180deg, #121212 0%, #1a1a1a 100%)',
+    background: 'linear-gradient(180deg, #0d2f62 0%, #081f3f 100%)',
     color: '#fff',
-    borderRight: '1px solid rgba(255, 215, 0, 0.1)',
+    borderRight: '1px solid rgba(227, 165, 117, 0.22)',
     boxShadow: '4px 0 10px rgba(0, 0, 0, 0.1)',
   },
   ...(open && {
@@ -130,9 +130,9 @@ const DrawerStyled = styled(Drawer, {
     '& .MuiDrawer-paper': { 
       ...openedMixin(theme), 
       position: 'relative',
-      background: 'linear-gradient(180deg, #121212 0%, #1a1a1a 100%)',
+      background: 'linear-gradient(180deg, #0d2f62 0%, #081f3f 100%)',
       color: '#fff',
-      borderRight: '1px solid rgba(255, 215, 0, 0.1)',
+      borderRight: '1px solid rgba(227, 165, 117, 0.22)',
       boxShadow: '4px 0 10px rgba(0, 0, 0, 0.1)',
     },
   }),
@@ -141,9 +141,9 @@ const DrawerStyled = styled(Drawer, {
     '& .MuiDrawer-paper': { 
       ...closedMixin(theme), 
       position: 'relative',
-      background: 'linear-gradient(180deg, #121212 0%, #1a1a1a 100%)',
+      background: 'linear-gradient(180deg, #0d2f62 0%, #081f3f 100%)',
       color: '#fff',
-      borderRight: '1px solid rgba(255, 215, 0, 0.1)',
+      borderRight: '1px solid rgba(227, 165, 117, 0.22)',
       boxShadow: '4px 0 10px rgba(0, 0, 0, 0.1)',
     },
   }),
@@ -172,7 +172,7 @@ const MainContent = styled(Box, {
   minHeight: 0,
   overflowX: 'hidden',
   overflowY: 'auto',
-  background: 'linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%)',
+  background: 'linear-gradient(135deg, #f5f7fb 0%, #e9eef8 100%)',
 }));
 
 const MainLayout = () => {
@@ -312,9 +312,9 @@ const MainLayout = () => {
             sx={{
               // لا تضيف مسافة إضافية بجانب الأيقونة
               marginInlineEnd: 0,
-              color: '#FFD700',
+              color: '#e3a575',
               '&:hover': {
-                backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                backgroundColor: 'rgba(227, 165, 117, 0.14)',
                 transform: 'scale(1.05)',
               },
               transition: 'all 0.3s ease',
@@ -329,7 +329,7 @@ const MainLayout = () => {
             sx={{ 
               flexGrow: 1, 
               fontWeight: 'bold',
-              color: '#FFD700',
+              color: '#e3a575',
               textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
               letterSpacing: '0.5px',
             }}
@@ -350,11 +350,11 @@ const MainLayout = () => {
                 onClick={handleOpenUserMenu} 
                 sx={{ 
                   p: 0,
-                  border: '2px solid #FFD700',
+                  border: '2px solid #e3a575',
                   transition: 'all 0.3s ease',
                   '&:hover': {
                     transform: 'scale(1.05)',
-                    boxShadow: '0 0 10px rgba(255, 215, 0, 0.5)',
+                    boxShadow: '0 0 10px rgba(227, 165, 117, 0.45)',
                   },
                 }}
               >
@@ -373,7 +373,7 @@ const MainLayout = () => {
                 '& .MuiPaper-root': {
                   borderRadius: '12px',
                   boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
-                  border: '1px solid rgba(255, 215, 0, 0.1)',
+                  border: '1px solid rgba(227, 165, 117, 0.18)',
                   overflow: 'visible',
                   '&:before': {
                     content: '""',
@@ -387,8 +387,8 @@ const MainLayout = () => {
                     bgcolor: 'background.paper',
                     transform: 'translateY(-50%) rotate(45deg)',
                     zIndex: 0,
-                    borderTop: '1px solid rgba(255, 215, 0, 0.1)',
-                    borderLeft: '1px solid rgba(255, 215, 0, 0.1)',
+                    borderTop: '1px solid rgba(227, 165, 117, 0.18)',
+                    borderLeft: '1px solid rgba(227, 165, 117, 0.18)',
                   },
                 },
               }}
@@ -413,12 +413,12 @@ const MainLayout = () => {
                   margin: '4px 8px',
                   transition: 'all 0.3s ease',
                   '&:hover': {
-                    backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                    backgroundColor: 'rgba(227, 165, 117, 0.14)',
                     '& .MuiListItemIcon-root': {
-                      color: '#FFD700',
+                      color: '#e3a575',
                     },
                     '& .MuiTypography-root': {
-                      color: '#FFD700',
+                      color: '#e3a575',
                     },
                   },
                 }}
@@ -435,12 +435,12 @@ const MainLayout = () => {
                   margin: '4px 8px',
                   transition: 'all 0.3s ease',
                   '&:hover': {
-                    backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                    backgroundColor: 'rgba(227, 165, 117, 0.14)',
                     '& .MuiListItemIcon-root': {
-                      color: '#FFD700',
+                      color: '#e3a575',
                     },
                     '& .MuiTypography-root': {
-                      color: '#FFD700',
+                      color: '#e3a575',
                     },
                   },
                 }}
@@ -450,7 +450,7 @@ const MainLayout = () => {
                 </ListItemIcon>
                 <Typography textAlign='center'>{t('settings')}</Typography>
               </MenuItem>
-              <Divider sx={{ margin: '4px 8px', borderColor: 'rgba(255, 215, 0, 0.1)' }} />
+              <Divider sx={{ margin: '4px 8px', borderColor: 'rgba(227, 165, 117, 0.18)' }} />
               <MenuItem 
                 onClick={() => { handleCloseUserMenu(); handleLogout(); }}
                 sx={{
@@ -479,15 +479,15 @@ const MainLayout = () => {
       </AppBarStyled>
       <DrawerStyled variant='permanent' anchor='left' open={open} className={`sidebar ${open ? 'active' : ''}`} sx={{ gridArea: 'drawer', '& .MuiDrawer-paper': { height: '100%', boxSizing: 'border-box' } }}>
         <DrawerHeader sx={{ 
-          borderBottom: '1px solid rgba(255, 215, 0, 0.1)',
-          background: 'linear-gradient(90deg, rgba(255, 215, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%)',
+          borderBottom: '1px solid rgba(227, 165, 117, 0.18)',
+          background: 'linear-gradient(90deg, rgba(227, 165, 117, 0.10) 0%, rgba(0, 0, 0, 0) 100%)',
         }}>
           <IconButton 
             onClick={handleDrawerClose}
             sx={{
-              color: '#FFD700',
+              color: '#e3a575',
               '&:hover': {
-                backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                backgroundColor: 'rgba(227, 165, 117, 0.14)',
                 transform: 'scale(1.05)',
               },
               transition: 'all 0.3s ease',
@@ -496,7 +496,7 @@ const MainLayout = () => {
             {isRTL ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
-        <Divider sx={{ borderColor: 'rgba(255, 215, 0, 0.1)' }} />
+        <Divider sx={{ borderColor: 'rgba(227, 165, 117, 0.18)' }} />
         <List>
           {menuItems.map((item) => (
             <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
@@ -509,24 +509,24 @@ const MainLayout = () => {
                   margin: '4px 8px',
                   transition: 'all 0.3s ease',
                   '&:hover': {
-                    backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                    backgroundColor: 'rgba(227, 165, 117, 0.14)',
                     '& .MuiListItemIcon-root': {
-                      color: '#FFD700',
+                      color: '#e3a575',
                     },
                     '& .MuiListItemText-primary': {
-                      color: '#FFD700',
+                      color: '#e3a575',
                     },
                   },
                   '&.Mui-selected': {
-                    backgroundColor: 'rgba(255, 215, 0, 0.2)',
+                    backgroundColor: 'rgba(227, 165, 117, 0.20)',
                     '&:hover': {
-                      backgroundColor: 'rgba(255, 215, 0, 0.3)',
+                      backgroundColor: 'rgba(227, 165, 117, 0.28)',
                     },
                     '& .MuiListItemIcon-root': {
-                      color: '#FFD700',
+                      color: '#e3a575',
                     },
                     '& .MuiListItemText-primary': {
-                      color: '#FFD700',
+                      color: '#e3a575',
                       fontWeight: 'bold',
                     },
                   },
@@ -540,7 +540,7 @@ const MainLayout = () => {
                     // إزالة الهامش الجانبي لتقليل أي فراغ بصري
                     marginInlineEnd: 0,
                     justifyContent: 'center',
-                    color: window.location.pathname === item.path ? '#FFD700' : 'inherit',
+                    color: window.location.pathname === item.path ? '#e3a575' : 'inherit',
                     transition: 'color 0.3s ease',
                   }}
                 >
@@ -551,7 +551,7 @@ const MainLayout = () => {
                   sx={{ 
                     opacity: open ? 1 : 0,
                     '& .MuiTypography-root': {
-                      color: window.location.pathname === item.path ? '#FFD700' : 'inherit',
+                      color: window.location.pathname === item.path ? '#e3a575' : 'inherit',
                       fontWeight: window.location.pathname === item.path ? 'bold' : 'normal',
                       transition: 'color 0.3s ease, font-weight 0.3s ease',
                     },

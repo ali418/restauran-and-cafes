@@ -20,9 +20,10 @@ const pulse = keyframes`
 const LoadingScreen = () => {
   // Hardcoded colors to ensure it works outside ThemeProvider (e.g. in index.js)
   const colors = {
-    gold: '#d4af37',
+    accent: '#e3a575',
+    brand: '#114188',
     text: '#212529',
-    background: '#ffffff'
+    background: '#ffffff',
   };
 
   return (
@@ -53,7 +54,7 @@ const LoadingScreen = () => {
           variant="h3"
           component="h1"
           sx={{
-            color: colors.gold,
+            color: colors.brand,
             fontWeight: 'bold',
             fontFamily: '"Tajawal", "Roboto", "Helvetica", "Arial", sans-serif',
             marginBottom: 2,
@@ -61,14 +62,14 @@ const LoadingScreen = () => {
             textShadow: '0px 2px 4px rgba(0,0,0,0.1)',
           }}
         >
-          restauran and cafes
+          Restaurant & Cafés Management
         </Typography>
         
         <CircularProgress 
           size={50}
           thickness={4}
           sx={{
-            color: colors.gold,
+            color: colors.accent,
             marginBottom: 2,
           }}
         />

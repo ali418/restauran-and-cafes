@@ -57,7 +57,7 @@ const QRCodePage = () => {
                   left: -2,
                   right: -2,
                   bottom: -2,
-                  background: 'linear-gradient(45deg, #d4af37, #f5cc7f)',
+                  background: 'linear-gradient(45deg, #114188, #e3a575)',
                   zIndex: -1,
                   borderRadius: 5,
                   opacity: 0.7

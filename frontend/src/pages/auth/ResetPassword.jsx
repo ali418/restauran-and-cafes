@@ -118,8 +118,8 @@ const ResetPassword = () => {
         width: '100%',
       }}
     >
-      <Avatar sx={{ m: 1, bgcolor: '#d4af37', width: 56, height: 56 }}>
-        <LockOutlinedIcon sx={{ fontSize: 30, color: '#000' }} />
+      <Avatar sx={{ m: 1, bgcolor: '#e3a575', width: 56, height: 56 }}>
+        <LockOutlinedIcon sx={{ fontSize: 30, color: '#114188' }} />
       </Avatar>
       <Typography component="h1" variant="h5" sx={{ fontFamily: '"Tajawal", sans-serif', fontWeight: 'bold', mb: 3 }}>
         {t('resetPassword')}
@@ -145,11 +145,11 @@ const ResetPassword = () => {
             variant="contained"
             sx={{
               mt: 2,
-              bgcolor: '#d4af37',
-              color: '#000',
+              bgcolor: '#114188',
+              color: '#fff',
               fontWeight: 'bold',
               '&:hover': {
-                bgcolor: '#b89628',
+                bgcolor: '#0d2f62',
               },
               fontFamily: '"Tajawal", sans-serif',
             }}
@@ -187,11 +187,11 @@ const ResetPassword = () => {
             sx={{
               '& .MuiOutlinedInput-root': {
                 '&.Mui-focused fieldset': {
-                  borderColor: '#d4af37',
+                  borderColor: '#114188',
                 },
               },
               '& .MuiInputLabel-root.Mui-focused': {
-                color: '#d4af37',
+                color: '#114188',
               },
             }}
           />
@@ -223,11 +223,11 @@ const ResetPassword = () => {
             sx={{
               '& .MuiOutlinedInput-root': {
                 '&.Mui-focused fieldset': {
-                  borderColor: '#d4af37',
+                  borderColor: '#114188',
                 },
               },
               '& .MuiInputLabel-root.Mui-focused': {
-                color: '#d4af37',
+                color: '#114188',
               },
             }}
           />
@@ -238,13 +238,13 @@ const ResetPassword = () => {
             sx={{
               mt: 3,
               mb: 2,
-              bgcolor: '#d4af37',
-              color: '#000',
+              bgcolor: '#114188',
+              color: '#fff',
               fontWeight: 'bold',
               fontSize: '1.1rem',
               py: 1.2,
               '&:hover': {
-                bgcolor: '#b89628',
+                bgcolor: '#0d2f62',
               },
               fontFamily: '"Tajawal", sans-serif',
             }}
@@ -258,7 +258,7 @@ const ResetPassword = () => {
                 component={RouterLink} 
                 to="/login" 
                 variant="body2"
-                sx={{ color: '#d4af37', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
+                sx={{ color: '#114188', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
               >
                 {t('auth:backToLogin')}
               </Link>

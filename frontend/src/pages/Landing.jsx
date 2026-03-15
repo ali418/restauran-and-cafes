@@ -110,10 +110,34 @@ const Landing = () => {
   ];
 
   return (
-    <Box sx={{ minHeight: '100vh', background: 'linear-gradient(180deg, #0b0b0b 0%, #121212 45%, #ffffff 45%)' }}>
+    <Box sx={{ minHeight: '100vh', background: 'linear-gradient(180deg, #0d2f62 0%, #114188 45%, #ffffff 45%)' }}>
       <Box sx={{ pt: { xs: 8, md: 10 }, pb: { xs: 6, md: 8 } }}>
         <Container maxWidth="lg">
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2, gap: 1 }}>
+            <Button
+              component="a"
+              href="https://www.key4infotech.com/frontend/index.php"
+              target="_blank"
+              rel="noreferrer"
+              sx={{
+                color: '#fff',
+                textTransform: 'none',
+                fontWeight: 800,
+                gap: 1,
+                px: 1.5,
+                py: 0.8,
+                borderRadius: 999,
+                '&:hover': { backgroundColor: 'rgba(255,255,255,0.12)' },
+              }}
+            >
+              <Box
+                component="img"
+                alt="Key For Information Technology"
+                src="https://www.key4infotech.com/frontend/images/logo/logo%20keytt.png"
+                sx={{ height: 28, width: 'auto', display: 'block', filter: 'brightness(0) invert(1)' }}
+              />
+              {isArabic ? 'موقع الشركة' : 'Company Website'}
+            </Button>
             <LanguageSwitcher />
           </Box>
           <Grid container spacing={4} alignItems="center">
@@ -123,9 +147,9 @@ const Landing = () => {
                   label={isArabic ? 'حل متكامل لإدارة المطاعم والمقاهي' : 'All‑in‑one system for restaurants & cafés'}
                   sx={{
                     alignSelf: 'flex-start',
-                    bgcolor: 'rgba(212,175,55,0.18)',
-                    color: '#d4af37',
-                    border: '1px solid rgba(212,175,55,0.35)',
+                    bgcolor: 'rgba(227,165,117,0.22)',
+                    color: '#ffffff',
+                    border: '1px solid rgba(227,165,117,0.35)',
                     fontWeight: 700,
                   }}
                 />
@@ -138,27 +162,41 @@ const Landing = () => {
                     fontSize: { xs: '2.1rem', md: '3.2rem' },
                   }}
                 >
-                  {isArabic ? 'restauran and cafes' : 'restauran and cafes'}
+                  {isArabic ? 'نظام إدارة المطاعم والمقاهي' : 'Restaurant & Cafés Management'}
                 </Typography>
                 <Typography sx={{ color: 'rgba(255,255,255,0.78)', fontSize: { xs: '1rem', md: '1.1rem' } }}>
                   {isArabic
-                    ? 'إدارة المبيعات، المنتجات، المخزون، العملاء والتقارير في مكان واحد — بواجهة سريعة وتصميم أسود وذهبي.'
-                    : 'Manage sales, products, inventory, customers, and reports in one place — fast UI with a black & gold theme.'}
+                    ? 'إدارة المبيعات، المنتجات، المخزون، العملاء والتقارير في مكان واحد — بهوية زرقاء متوافقة مع ألوان الشركة.'
+                    : 'Manage sales, products, inventory, customers, and reports in one place — with a brand‑consistent blue theme.'}
                 </Typography>
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5} sx={{ pt: 1 }}>
                   <Button
                     variant="contained"
                     onClick={() => navigate('/auth/login')}
                     sx={{
-                      bgcolor: '#d4af37',
-                      color: '#000',
+                      bgcolor: '#e3a575',
+                      color: '#1b1b1b',
                       fontWeight: 800,
                       py: 1.3,
                       px: 3,
-                      '&:hover': { bgcolor: '#b89628' },
+                      '&:hover': { bgcolor: '#c98b57' },
                     }}
                   >
                     {isArabic ? 'تسجيل الدخول' : 'Login'}
+                  </Button>
+                  <Button
+                    variant="contained"
+                    onClick={() => navigate('/online-order')}
+                    sx={{
+                      bgcolor: '#ffffff',
+                      color: '#114188',
+                      fontWeight: 900,
+                      py: 1.3,
+                      px: 3,
+                      '&:hover': { bgcolor: '#f2f5fb' },
+                    }}
+                  >
+                    {isArabic ? 'الطلب أونلاين' : 'Online Order'}
                   </Button>
                   <Button
                     variant="outlined"
@@ -167,12 +205,12 @@ const Landing = () => {
                       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }}
                     sx={{
-                      borderColor: 'rgba(212,175,55,0.7)',
-                      color: '#d4af37',
+                      borderColor: 'rgba(227,165,117,0.85)',
+                      color: '#ffffff',
                       fontWeight: 700,
                       py: 1.3,
                       px: 3,
-                      '&:hover': { borderColor: '#d4af37', bgcolor: 'rgba(212,175,55,0.08)' },
+                      '&:hover': { borderColor: '#e3a575', bgcolor: 'rgba(227,165,117,0.10)' },
                     }}
                   >
                     {isArabic ? 'عرض الميزات' : 'View Features'}
@@ -189,13 +227,13 @@ const Landing = () => {
                           onClick={() => goToLoginWithDemo(acc.username, acc.password)}
                           clickable
                           label={(isArabic ? 'اسم المستخدم: ' : 'Username: ') + acc.username}
-                          sx={{ bgcolor: '#111', color: '#fff', fontWeight: 900 }}
+                          sx={{ bgcolor: '#ffffff', color: '#114188', fontWeight: 900 }}
                         />
                         <Chip
                           onClick={() => goToLoginWithDemo(acc.username, acc.password)}
                           clickable
                           label={(isArabic ? 'كلمة المرور: ' : 'Password: ') + acc.password}
-                          sx={{ bgcolor: '#111', color: '#fff', fontWeight: 900 }}
+                          sx={{ bgcolor: '#ffffff', color: '#114188', fontWeight: 900 }}
                         />
                       </React.Fragment>
                     ))}
@@ -220,25 +258,25 @@ const Landing = () => {
                     </Typography>
                     <Stack spacing={1.3}>
                       <Stack direction="row" spacing={1.2} alignItems="center">
-                        <Box sx={{ color: '#d4af37' }}><VerifiedUser /></Box>
+                        <Box sx={{ color: '#e3a575' }}><VerifiedUser /></Box>
                         <Typography sx={{ color: 'rgba(255,255,255,0.8)' }}>
                           {isArabic ? 'صلاحيات وأدوار متعددة' : 'Multiple roles & permissions'}
                         </Typography>
                       </Stack>
                       <Stack direction="row" spacing={1.2} alignItems="center">
-                        <Box sx={{ color: '#d4af37' }}><PointOfSale /></Box>
+                        <Box sx={{ color: '#e3a575' }}><PointOfSale /></Box>
                         <Typography sx={{ color: 'rgba(255,255,255,0.8)' }}>
                           {isArabic ? 'POS سريع وعملي' : 'Fast, practical POS'}
                         </Typography>
                       </Stack>
                       <Stack direction="row" spacing={1.2} alignItems="center">
-                        <Box sx={{ color: '#d4af37' }}><BarChart /></Box>
+                        <Box sx={{ color: '#e3a575' }}><BarChart /></Box>
                         <Typography sx={{ color: 'rgba(255,255,255,0.8)' }}>
                           {isArabic ? 'تقارير واضحة لاتخاذ القرار' : 'Clear reports for decisions'}
                         </Typography>
                       </Stack>
                       <Stack direction="row" spacing={1.2} alignItems="center">
-                        <Box sx={{ color: '#d4af37' }}><QrCode2 /></Box>
+                        <Box sx={{ color: '#e3a575' }}><QrCode2 /></Box>
                         <Typography sx={{ color: 'rgba(255,255,255,0.8)' }}>
                           {isArabic ? 'طلبات أونلاين عبر QR' : 'Online orders via QR'}
                         </Typography>
@@ -294,8 +332,8 @@ const Landing = () => {
                           width: 46,
                           height: 46,
                           borderRadius: 2,
-                          bgcolor: 'rgba(212,175,55,0.15)',
-                          color: '#b89628',
+                          bgcolor: 'rgba(17,65,136,0.12)',
+                          color: '#114188',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -312,18 +350,61 @@ const Landing = () => {
             ))}
           </Grid>
 
+          <Box sx={{ mt: 3 }}>
+            <Card
+              elevation={0}
+              sx={{
+                borderRadius: 3,
+                border: '1px solid #eee',
+                background: 'linear-gradient(135deg, rgba(17,65,136,0.06) 0%, rgba(227,165,117,0.10) 100%)',
+              }}
+            >
+              <CardContent sx={{ p: 2.5 }}>
+                <Grid container spacing={2} alignItems="center">
+                  <Grid item xs={12} md={8}>
+                    <Typography sx={{ fontWeight: 900, color: '#111', fontSize: '1.1rem' }}>
+                      {isArabic ? 'صفحة الطلب أونلاين' : 'Online Order Page'}
+                    </Typography>
+                    <Typography sx={{ color: '#555', mt: 0.5 }}>
+                      {isArabic
+                        ? 'صفحة عامة للطلبات: عرض المنتجات، إدخال بيانات العميل، وتأكيد الطلب.'
+                        : 'Public page for ordering: browse products, enter customer details, and confirm the order.'}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} md={4} sx={{ display: 'flex', justifyContent: { xs: 'flex-start', md: 'flex-end' } }}>
+                    <Button
+                      variant="contained"
+                      onClick={() => navigate('/online-order')}
+                      sx={{
+                        bgcolor: '#114188',
+                        color: '#fff',
+                        fontWeight: 900,
+                        px: 3,
+                        py: 1.1,
+                        borderRadius: 999,
+                        '&:hover': { bgcolor: '#0d2f62' },
+                      }}
+                    >
+                      {isArabic ? 'فتح صفحة الطلب' : 'Open Online Order'}
+                    </Button>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
+          </Box>
+
           <Box sx={{ mt: 5, display: 'flex', justifyContent: 'center' }}>
             <Button
               variant="contained"
               onClick={() => navigate('/auth/login')}
               sx={{
-                bgcolor: '#000',
-                color: '#fff',
+                bgcolor: '#e3a575',
+                color: '#1b1b1b',
                 fontWeight: 900,
                 px: 4,
                 py: 1.4,
                 borderRadius: 999,
-                '&:hover': { bgcolor: '#111' },
+                '&:hover': { bgcolor: '#c98b57' },
               }}
             >
               {isArabic ? 'اذهب لتسجيل الدخول' : 'Go to Login'}
@@ -332,10 +413,10 @@ const Landing = () => {
         </Container>
       </Box>
 
-      <Box sx={{ py: 3, bgcolor: '#0b0b0b' }}>
+      <Box sx={{ py: 3, bgcolor: '#0d2f62' }}>
         <Container maxWidth="lg">
           <Typography sx={{ color: 'rgba(255,255,255,0.65)', textAlign: 'center' }}>
-            {isArabic ? 'restauran and cafes' : 'restauran and cafes'} © {new Date().getFullYear()}
+            {isArabic ? 'نظام إدارة المطاعم والمقاهي' : 'Restaurant & Cafés Management'} © {new Date().getFullYear()}
           </Typography>
         </Container>
       </Box>

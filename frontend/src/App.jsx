@@ -146,25 +146,25 @@ const App = () => {
       palette: {
         mode: themeMode,
         primary: {
-          main: '#000000', // تغيير من اللون الأخضر إلى الأسود
-          light: '#333333',
-          dark: '#000000',
-          contrastText: '#ffffff'
+          main: '#114188',
+          light: '#3b629d',
+          dark: '#0d2f62',
+          contrastText: '#ffffff',
         },
         secondary: {
-          main: '#FFD700', // اللون الذهبي الكلاسيكي (Gold)
-          light: '#FFFF00',
-          dark: '#FFA000',
-          contrastText: '#000000'
+          main: '#e3a575',
+          light: '#f0c4a1',
+          dark: '#c98b57',
+          contrastText: '#1b1b1b',
         },
         background: {
           default: '#ffffff',
-          paper: '#f8f9fa'
+          paper: '#f8f9fa',
         },
         text: {
           primary: '#212529',
-          secondary: '#6c757d'
-        }
+          secondary: '#6c757d',
+        },
       },
       typography: {
         fontFamily: isRTL 

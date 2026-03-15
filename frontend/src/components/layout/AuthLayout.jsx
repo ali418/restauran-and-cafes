@@ -51,12 +51,12 @@ const AuthLayout = () => {
             sx={{
               fontFamily: '"Tajawal", sans-serif',
               fontWeight: 'bold',
-              color: '#d4af37', // Gold color
+              color: '#e3a575',
               textShadow: '0 2px 4px rgba(0,0,0,0.5)',
               letterSpacing: '1px',
             }}
           >
-            {storeSettings?.name || 'restauran and cafes'}
+            {storeSettings?.name || 'Restaurant & Cafés Management'}
           </Typography>
         </Box>
 
@@ -72,7 +72,7 @@ const AuthLayout = () => {
               borderRadius: '16px',
               backgroundColor: 'rgba(255, 255, 255, 0.95)',
               backdropFilter: 'blur(10px)',
-              borderTop: '4px solid #d4af37',
+              borderTop: '4px solid #e3a575',
               width: '100%',
               maxWidth: '450px',
             }}
@@ -92,7 +92,7 @@ const AuthLayout = () => {
           }}
         >
           <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)' }}>
-            {(storeSettings?.name || 'restauran and cafes')} © {new Date().getFullYear()}
+            {(storeSettings?.name || 'Restaurant & Cafés Management')} © {new Date().getFullYear()}
           </Typography>
         </Box>
       </Box>

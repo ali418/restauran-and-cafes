@@ -56,8 +56,7 @@ import {
 } from 'recharts';
 import apiService from '../api/apiService';
 
-// Colors for charts - updated with gold and black theme
-const COLORS = ['#FFD700', '#121212', '#DAA520', '#8B4513', '#D4AF37'];
+const COLORS = ['#114188', '#e3a575', '#0d2f62', '#3b629d', '#c98b57'];
 
 const Dashboard = () => {
   const { t, i18n } = useTranslation('dashboard');
@@ -116,7 +115,7 @@ const Dashboard = () => {
         <Paper elevation={3} sx={{ 
           p: 1.5, 
           borderRadius: '8px',
-          border: '1px solid rgba(255, 215, 0, 0.3)',
+          border: '1px solid rgba(17, 65, 136, 0.22)',
           boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
           background: 'linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%)',
           position: 'relative',
@@ -128,12 +127,12 @@ const Dashboard = () => {
             left: 0,
             width: '4px',
             height: '100%',
-            background: 'linear-gradient(to bottom, #FFD700, #DAA520)'
+            background: 'linear-gradient(to bottom, #114188, #e3a575)'
           }
         }}>
           <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500 }}>{label}</Typography>
           <Typography variant="subtitle2" sx={{ mt: 0.5, color: '#000', fontWeight: 600 }}>
-            {t('revenue')}: <span style={{ color: '#DAA520' }}>{formatCurrency(val)}</span>
+            {t('revenue')}: <span style={{ color: '#114188' }}>{formatCurrency(val)}</span>
           </Typography>
         </Paper>
       );
@@ -389,21 +388,21 @@ const Dashboard = () => {
       title: t('todaySales'),
       value: `${currency.symbol} ${Number(todaySalesAmount || 0).toFixed(2)}`,
       icon: <TrendingUp />,
-      color: '#DAA520', // Gold color
+      color: '#114188',
       onClick: () => navigate('/sales'),
     },
     {
       title: t('totalCustomers'),
       value: String(totalCustomers),
       icon: <People />,
-      color: '#FFD700', // Gold color
+      color: '#e3a575',
       onClick: () => navigate('/customers'),
     },
     {
       title: t('totalProducts'),
       value: String(totalProducts),
       icon: <Inventory />,
-      color: '#D4AF37', // Gold color
+      color: '#0d2f62',
       onClick: () => navigate('/products'),
     },
     // Low Stock card removed as requested
@@ -434,7 +433,7 @@ const Dashboard = () => {
                   height: 120,
                   cursor: 'pointer',
                   borderRadius: '10px',
-                  border: '1px solid rgba(255, 215, 0, 0.1)',
+                  border: '1px solid rgba(17, 65, 136, 0.12)',
                   background: 'linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%)',
                   transition: 'all 0.3s ease',
                   position: 'relative',
@@ -446,12 +445,12 @@ const Dashboard = () => {
                     left: 0,
                     width: '5px',
                     height: '100%',
-                    background: `linear-gradient(to bottom, ${card.color}, rgba(255, 215, 0, 0.5))`,
+                    background: `linear-gradient(to bottom, ${card.color}, rgba(227, 165, 117, 0.28))`,
                   },
                   '&:hover': {
                     boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
                     transform: 'translateY(-3px)',
-                    border: '1px solid rgba(255, 215, 0, 0.3)',
+                    border: '1px solid rgba(17, 65, 136, 0.22)',
                   },
                 }}
                 onClick={card.onClick}
@@ -540,14 +539,14 @@ const Dashboard = () => {
                     aria-label="period-selector"
                     sx={{
                       '& .MuiToggleButtonGroup-grouped': {
-                        border: '1px solid rgba(255, 215, 0, 0.3)',
+                        border: '1px solid rgba(17, 65, 136, 0.22)',
                         '&.Mui-selected': {
-                          backgroundColor: 'rgba(255, 215, 0, 0.15)',
-                          color: '#B8860B',
+                          backgroundColor: 'rgba(17, 65, 136, 0.10)',
+                          color: '#114188',
                           fontWeight: 600,
                         },
                         '&:hover': {
-                          backgroundColor: 'rgba(255, 215, 0, 0.05)',
+                          backgroundColor: 'rgba(17, 65, 136, 0.06)',
                         },
                         transition: 'all 0.3s ease',
                       }
@@ -563,10 +562,10 @@ const Dashboard = () => {
                       aria-label="settings" 
                       onClick={() => navigate('/reports')}
                       sx={{
-                        color: '#DAA520',
+                        color: '#114188',
                         transition: 'all 0.3s ease',
                         '&:hover': {
-                          backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                          backgroundColor: 'rgba(17, 65, 136, 0.08)',
                           transform: 'scale(1.05)'
                         }
                       }}
@@ -577,7 +576,7 @@ const Dashboard = () => {
                 </Box>
               }
             />
-            <Divider sx={{ borderColor: 'rgba(255, 215, 0, 0.1)' }} />
+            <Divider sx={{ borderColor: 'rgba(17, 65, 136, 0.12)' }} />
             <CardContent sx={{ height: 320 }}>
               {(loading || revLoading) ? (
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
@@ -591,16 +590,16 @@ const Dashboard = () => {
                   >
                     <defs>
                       <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#DAA520" stopOpacity={0.9} />
-                        <stop offset="100%" stopColor="#DAA520" stopOpacity={0.2} />
+                        <stop offset="0%" stopColor="#114188" stopOpacity={0.9} />
+                        <stop offset="100%" stopColor="#114188" stopOpacity={0.2} />
                       </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 215, 0, 0.1)" />
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(17, 65, 136, 0.12)" />
                     <XAxis dataKey="name" tick={{ fill: '#333', fontSize: 12 }} />
                     <YAxis tick={{ fill: '#333', fontSize: 12 }} tickFormatter={formatCurrency} width={80} />
                     <RechartsTooltip content={<CustomTooltip />} cursor={{ fill: '#F5F5F5' }} />
                     <Legend />
-                    <Bar dataKey="sales" name={t('revenue')} fill="url(#revenueGradient)" stroke="#DAA520" radius={[8, 8, 0, 0]} />
+                    <Bar dataKey="sales" name={t('revenue')} fill="url(#revenueGradient)" stroke="#114188" radius={[8, 8, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               ) : (
@@ -626,10 +625,10 @@ const Dashboard = () => {
                   aria-label="settings" 
                   onClick={() => navigate('/reports')}
                   sx={{
-                    color: '#DAA520',
+                    color: '#114188',
                     transition: 'all 0.3s ease',
                     '&:hover': {
-                      backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                      backgroundColor: 'rgba(17, 65, 136, 0.08)',
                       transform: 'scale(1.05)'
                     }
                   }}
@@ -638,7 +637,7 @@ const Dashboard = () => {
                 </IconButton>
               }
             />
-            <Divider sx={{ borderColor: 'rgba(255, 215, 0, 0.1)' }} />
+            <Divider sx={{ borderColor: 'rgba(17, 65, 136, 0.12)' }} />
             <CardContent sx={{ height: 300 }}>
               {loading ? (
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
@@ -688,10 +687,10 @@ const Dashboard = () => {
                     aria-label="more" 
                     onClick={() => navigate('/sales')}
                     sx={{
-                      color: '#DAA520',
+                      color: '#114188',
                       transition: 'all 0.3s ease',
                       '&:hover': {
-                        backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                        backgroundColor: 'rgba(17, 65, 136, 0.08)',
                         transform: 'scale(1.05)'
                       }
                     }}
@@ -701,7 +700,7 @@ const Dashboard = () => {
                 </Tooltip>
               }
             />
-            <Divider sx={{ borderColor: 'rgba(255, 215, 0, 0.1)' }} />
+            <Divider sx={{ borderColor: 'rgba(17, 65, 136, 0.12)' }} />
             <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
               {recentSales.map((sale) => (
                 <React.Fragment key={sale.id}>
@@ -715,7 +714,7 @@ const Dashboard = () => {
                   >
                     <ListItemAvatar>
                       <Avatar sx={{ 
-                        bgcolor: '#DAA520',
+                        bgcolor: '#114188',
                         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
                         transition: 'all 0.3s ease',
                         '&:hover': {

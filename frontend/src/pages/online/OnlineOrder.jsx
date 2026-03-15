@@ -1002,7 +1002,7 @@ const OnlineOrder = () => {
                   <Typography 
                     variant="h6" 
                     sx={{ 
-                      color: '#d4af37', 
+                      color: '#114188', 
                       fontWeight: 'bold',
                       fontSize: '1.1rem'
                     }}
@@ -1261,10 +1261,10 @@ const OnlineOrder = () => {
                     sx={{
                       p: 2,
                       cursor: 'pointer',
-                      border: customerInfo.paymentMethod === 'cashOnDelivery' ? '2px solid #d4af37' : '1px solid #e0e0e0',
+                      border: customerInfo.paymentMethod === 'cashOnDelivery' ? '2px solid #114188' : '1px solid #e0e0e0',
                       borderRadius: 2,
                       transition: 'all 0.3s ease',
-                      '&:hover': { borderColor: '#d4af37' }
+                      '&:hover': { borderColor: '#114188' }
                     }}
                     onClick={() => handlePaymentMethodChange({ target: { value: 'cashOnDelivery' } })}
                   >
@@ -1274,7 +1274,7 @@ const OnlineOrder = () => {
                         onChange={handlePaymentMethodChange}
                         value="cashOnDelivery"
                         name="payment-method-radio"
-                        sx={{ color: '#d4af37', '&.Mui-checked': { color: '#d4af37' } }}
+                        sx={{ color: '#114188', '&.Mui-checked': { color: '#114188' } }}
                       />
                       <Box>
                         <Typography variant="subtitle1">{t('cashOnDelivery', 'الدفع عند التوصيل')}</Typography>
@@ -1292,10 +1292,10 @@ const OnlineOrder = () => {
                     sx={{
                       p: 2,
                       cursor: 'pointer',
-                      border: customerInfo.paymentMethod === 'mobileMoney' ? '2px solid #d4af37' : '1px solid #e0e0e0',
+                      border: customerInfo.paymentMethod === 'mobileMoney' ? '2px solid #114188' : '1px solid #e0e0e0',
                       borderRadius: 2,
                       transition: 'all 0.3s ease',
-                      '&:hover': { borderColor: '#d4af37' }
+                      '&:hover': { borderColor: '#114188' }
                     }}
                     onClick={() => handlePaymentMethodChange({ target: { value: 'mobileMoney' } })}
                   >
@@ -1305,7 +1305,7 @@ const OnlineOrder = () => {
                         onChange={handlePaymentMethodChange}
                         value="mobileMoney"
                         name="payment-method-radio"
-                        sx={{ color: '#d4af37', '&.Mui-checked': { color: '#d4af37' } }}
+                        sx={{ color: '#114188', '&.Mui-checked': { color: '#114188' } }}
                       />
                       <Box>
                         <Typography variant="subtitle1">{t('mobileMoney', 'الدفع عبر الموبايل')}</Typography>
@@ -1327,10 +1327,10 @@ const OnlineOrder = () => {
               sx={{ 
                 mt: 2,
                 borderRadius: 2,
-                backgroundColor: 'rgba(212, 175, 55, 0.1)',
-                borderColor: '#d4af37',
+                backgroundColor: 'rgba(17, 65, 136, 0.08)',
+                borderColor: '#114188',
                 '& .MuiAlert-icon': {
-                  color: '#d4af37'
+                  color: '#114188'
                 }
               }}
             >
@@ -1346,7 +1346,7 @@ const OnlineOrder = () => {
           {/* Mobile Money Provider Selection - Only shown when Mobile Money is selected */}
           {customerInfo.paymentMethod === 'mobileMoney' && (
             <Grid item xs={12}>
-              <Box sx={{ mt: 2, p: 2, bgcolor: 'rgba(212, 175, 55, 0.05)', borderRadius: 2 }}>
+              <Box sx={{ mt: 2, p: 2, bgcolor: 'rgba(17, 65, 136, 0.05)', borderRadius: 2 }}>
                 <Typography variant="subtitle1" gutterBottom>
                   {t('selectProvider', 'اختر مزود خدمة الدفع')}
                 </Typography>
@@ -1418,9 +1418,9 @@ const OnlineOrder = () => {
                           startIcon={<Payment />}
                           onClick={() => openPaymentApp(customerInfo.mobilePaymentProvider)}
                           sx={{ 
-                            bgcolor: '#d4af37', 
-                            '&:hover': { bgcolor: '#c19b26' },
-                            color: '#000',
+                            bgcolor: '#114188', 
+                            '&:hover': { bgcolor: '#0d2f62' },
+                            color: '#fff',
                             fontWeight: 'bold'
                           }}
                         >
@@ -1442,9 +1442,9 @@ const OnlineOrder = () => {
                           component="label"
                           startIcon={<Receipt />}
                           sx={{ 
-                            borderColor: '#d4af37', 
-                            color: '#d4af37',
-                            '&:hover': { borderColor: '#c19b26', backgroundColor: 'rgba(212, 175, 55, 0.08)' }
+                            borderColor: '#114188', 
+                            color: '#114188',
+                            '&:hover': { borderColor: '#0d2f62', backgroundColor: 'rgba(17, 65, 136, 0.06)' }
                           }}
                         >
                           {t('uploadReceiptImage', 'تحميل صورة الإيصال')}
@@ -1461,7 +1461,7 @@ const OnlineOrder = () => {
                               label={customerInfo.transactionImage.name} 
                               onDelete={() => setCustomerInfo(prev => ({ ...prev, transactionImage: null }))}
                               color="primary"
-                              sx={{ bgcolor: 'rgba(212, 175, 55, 0.2)', color: '#000' }}
+                              sx={{ bgcolor: 'rgba(17, 65, 136, 0.10)', color: '#114188' }}
                             />
                           </Box>
                         )}
@@ -1707,7 +1707,7 @@ const OnlineOrder = () => {
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
-                          <Search sx={{ color: '#d4af37' }} />
+                          <Search sx={{ color: '#114188' }} />
                         </InputAdornment>
                       ),
                     }}
@@ -1716,15 +1716,15 @@ const OnlineOrder = () => {
                         borderRadius: '12px',
                         transition: 'all 0.3s ease',
                         '&:hover fieldset': {
-                          borderColor: '#d4af37',
+                          borderColor: '#114188',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#d4af37',
+                          borderColor: '#114188',
                           borderWidth: 2,
                         },
                       },
                       '& .MuiInputLabel-outlined.Mui-focused': {
-                        color: '#d4af37',
+                        color: '#114188',
                       },
                     }}
                   />
@@ -1738,10 +1738,10 @@ const OnlineOrder = () => {
                       sx={{ 
                         borderRadius: '12px',
                         '&:hover .MuiOutlinedInput-notchedOutline': {
-                          borderColor: '#d4af37',
+                          borderColor: '#114188',
                         },
                         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          borderColor: '#d4af37',
+                          borderColor: '#114188',
                           borderWidth: 2,
                         },
                         '& .MuiSelect-select': {
@@ -1757,12 +1757,12 @@ const OnlineOrder = () => {
                             '& .MuiMenuItem-root': {
                               padding: '10px 16px',
                               '&:hover': {
-                                backgroundColor: 'rgba(212, 175, 55, 0.08)',
+                                backgroundColor: 'rgba(17, 65, 136, 0.06)',
                               },
                               '&.Mui-selected': {
-                                backgroundColor: 'rgba(212, 175, 55, 0.15)',
+                                backgroundColor: 'rgba(17, 65, 136, 0.10)',
                                 '&:hover': {
-                                  backgroundColor: 'rgba(212, 175, 55, 0.2)',
+                                  backgroundColor: 'rgba(17, 65, 136, 0.14)',
                                 },
                               },
                             },
@@ -1795,8 +1795,8 @@ const OnlineOrder = () => {
                 <Box 
                   sx={{ 
                     p: 2, 
-                    background: 'linear-gradient(45deg, #d4af37 30%, #f5cc7f 90%)',
-                    color: '#000',
+                    background: 'linear-gradient(45deg, #114188 30%, #e3a575 90%)',
+                    color: '#fff',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between'
@@ -1834,12 +1834,12 @@ const OnlineOrder = () => {
                   sx={{ 
                     borderRadius: '12px', 
                     py: 1.5,
-                    background: 'linear-gradient(45deg, #d4af37 30%, #f5cc7f 90%)',
-                    color: '#000',
+                    background: 'linear-gradient(45deg, #114188 30%, #e3a575 90%)',
+                    color: '#fff',
                     fontWeight: 'bold',
                     '&:hover': {
-                      background: 'linear-gradient(45deg, #c19b26 30%, #e5bc6f 90%)',
-                      boxShadow: '0 6px 15px rgba(212, 175, 55, 0.4)',
+                      background: 'linear-gradient(45deg, #0d2f62 30%, #c98b57 90%)',
+                      boxShadow: '0 6px 15px rgba(17, 65, 136, 0.35)',
                       transform: 'translateY(-2px)'
                     },
                     transition: 'all 0.3s ease'
@@ -1862,13 +1862,13 @@ const OnlineOrder = () => {
             </Grid>
             <Grid item xs={12} md={4}>
               <Paper sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: 3, overflow: 'hidden', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)' }}>
-                <Box sx={{ p: 2, background: 'linear-gradient(45deg, #d4af37 30%, #f5cc7f 90%)', color: 'black', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Box sx={{ p: 2, background: 'linear-gradient(45deg, #114188 30%, #e3a575 90%)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <Typography variant="h6" sx={{ fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0,0,0,0.1)' }}>
-                    <ShoppingCart sx={{ mr: 1, verticalAlign: 'middle', color: '#000' }} />
+                    <ShoppingCart sx={{ mr: 1, verticalAlign: 'middle', color: '#fff' }} />
                     {t('yourOrder', 'Your Order')}
                   </Typography>
                   <Badge badgeContent={cartItems.length} color="error" sx={{ '& .MuiBadge-badge': { bgcolor: '#fff', color: '#000', fontWeight: 'bold' } }}>
-                    <ShoppingCart sx={{ color: '#000' }} />
+                    <ShoppingCart sx={{ color: '#fff' }} />
                   </Badge>
                 </Box>
                 <Box sx={{ flexGrow: 1, overflow: 'auto' }}>
@@ -1920,7 +1920,7 @@ const OnlineOrder = () => {
         elevation={3} 
         sx={{ 
           mb: 3, 
-          background: 'linear-gradient(45deg, #d4af37 30%, #f5cc7f 90%)',
+          background: 'linear-gradient(45deg, #114188 30%, #e3a575 90%)',
           borderRadius: '0 0 16px 16px'
         }}
       >
@@ -1931,12 +1931,12 @@ const OnlineOrder = () => {
               component="div"
               sx={{ 
                 fontWeight: 'bold',
-                color: '#000',
+                color: '#fff',
                 textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
                 letterSpacing: '0.5px'
               }}
             >
-              restauran and cafes
+              Restaurant & Cafés Management
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -1992,10 +1992,10 @@ const OnlineOrder = () => {
                 alternativeLabel
                 sx={{
                   '& .MuiStepLabel-root .Mui-completed': {
-                    color: '#d4af37', // golden color for completed steps
+                    color: '#0d2f62',
                   },
                   '& .MuiStepLabel-root .Mui-active': {
-                    color: '#d4af37', // golden color for active step
+                    color: '#114188',
                   },
                   '& .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel': {
                     color: 'rgba(0, 0, 0, 0.87)', // darker text for active step
@@ -2105,8 +2105,8 @@ const OnlineOrder = () => {
           sx={{ 
             textAlign: 'center',
             pb: 1,
-            background: 'linear-gradient(45deg, #d4af37 30%, #f5cc7f 90%)',
-            color: '#000',
+            background: 'linear-gradient(45deg, #114188 30%, #e3a575 90%)',
+            color: '#fff',
             fontWeight: 'bold'
           }}
         >
