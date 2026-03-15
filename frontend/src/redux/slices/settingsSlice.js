@@ -5,7 +5,7 @@ const initialState = {
   themeMode: 'light',
   language: 'ar',
   store: {
-    name: 'cafe sundus',
+    name: 'Restaurant & Cafés Management',
     email: '',
     phone: '',
     address: '',

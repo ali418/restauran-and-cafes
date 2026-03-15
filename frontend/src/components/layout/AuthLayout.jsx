@@ -2,12 +2,9 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Box, Container, Paper, Typography, Grid, useTheme } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { selectStoreSettings } from '../../redux/slices/settingsSlice';
 
 const AuthLayout = () => {
   const { t, i18n } = useTranslation('common');
-  const storeSettings = useSelector(selectStoreSettings);
   const theme = useTheme();
   const isRTL = i18n.dir() === 'rtl';
 
@@ -56,7 +53,7 @@ const AuthLayout = () => {
               letterSpacing: '1px',
             }}
           >
-            {storeSettings?.name || 'Restaurant & Cafés Management'}
+            {t('appName')}
           </Typography>
         </Box>
 
@@ -92,7 +89,7 @@ const AuthLayout = () => {
           }}
         >
           <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)' }}>
-            {(storeSettings?.name || 'Restaurant & Cafés Management')} © {new Date().getFullYear()}
+            {t('appName')} © {new Date().getFullYear()}
           </Typography>
         </Box>
       </Box>
