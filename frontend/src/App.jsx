@@ -367,12 +367,15 @@ const App = () => {
         <Routes>
             {/* Auth Routes */}
             <Route element={<AuthLayout />}>
-              <Route path="/login" element={<Login />} />
-              <Route path="/forgot-password" element={<ForgotPassword />} />
-              <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/auth/login" element={<Login />} />
+              <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+              <Route path="/auth/reset-password" element={<ResetPassword />} />
             </Route>
 
-            <Route path="/" element={<Landing />} />
+            <Route path="/" element={<Navigate to="/login" replace />} />
+            <Route path="/login" element={<Landing />} />
+            <Route path="/forgot-password" element={<Navigate to="/auth/forgot-password" replace />} />
+            <Route path="/reset-password" element={<Navigate to="/auth/reset-password" replace />} />
             
             {/* Main Routes - Wrapped with Suspense for lazy loading */}
             <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>

@@ -50,7 +50,7 @@ const Landing = () => {
   const goToLoginWithDemo = (username, password) => {
     const u = encodeURIComponent(username);
     const p = encodeURIComponent(password);
-    navigate(`/login?u=${u}&p=${p}`);
+    navigate(`/auth/login?u=${u}&p=${p}`);
   };
 
   const features = [
@@ -142,7 +142,7 @@ const Landing = () => {
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5} sx={{ pt: 1 }}>
                   <Button
                     variant="contained"
-                    onClick={() => navigate('/login')}
+                    onClick={() => navigate('/auth/login')}
                     sx={{
                       bgcolor: '#d4af37',
                       color: '#000',
@@ -309,7 +309,7 @@ const Landing = () => {
           <Box sx={{ mt: 5, display: 'flex', justifyContent: 'center' }}>
             <Button
               variant="contained"
-              onClick={() => navigate('/login')}
+              onClick={() => navigate('/auth/login')}
               sx={{
                 bgcolor: '#000',
                 color: '#fff',

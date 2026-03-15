@@ -270,7 +270,7 @@ const Login = () => {
           <Grid item xs>
             <Link
               component={RouterLink}
-              to="/"
+              to="/login"
               variant="body2"
               sx={{ color: '#111', textDecoration: 'none', fontWeight: 800, '&:hover': { textDecoration: 'underline' } }}
             >

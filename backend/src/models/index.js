@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
+const bcrypt = require('bcryptjs');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 
@@ -11,44 +12,42 @@ require('dotenv').config({ path: path.join(__dirname, '../../../.env') });
 const useSSL = env === 'production' || process.env.DATABASE_SSL === 'true';
 
 // Use DATABASE_URL if available, otherwise use individual config variables
-const sequelize = process.env.DATABASE_URL 
+const sequelize = process.env.DATABASE_URL
   ? new Sequelize(process.env.DATABASE_URL, {
-      dialect: 'postgres',
-      protocol: 'postgres',
-      dialectOptions: useSSL ? {
-        ssl: {
-          require: true,
-          rejectUnauthorized: false
-        }
-      } : {},
-      logging: false,
-      pool: {
-        max: 20,
-        min: 0,
-        acquire: 60000,
-        idle: 10000,
-        evict: 1000
-      }
-    })
+    dialect: 'postgres',
+    protocol: 'postgres',
+    dialectOptions: useSSL ? {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    } : {},
+    logging: false,
+    pool: {
+      max: 20,
+      min: 0,
+      acquire: 60000,
+      idle: 10000,
+      evict: 1000,
+    },
+  })
   : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-      host: process.env.DB_HOST,
-      port: process.env.DB_PORT,
-      dialect: 'postgres',
-      logging: false
-    });
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    dialect: 'postgres',
+    logging: false,
+  });
 
 const db = {};
 
 // Load models
 fs.readdirSync(__dirname)
-  .filter(file => {
-    return (
-      file.indexOf('.') !== 0 &&
+  .filter((file) => (
+    file.indexOf('.') !== 0 &&
       file !== basename &&
       file.slice(-3) === '.js'
-    );
-  })
-  .forEach(file => {
+  ))
+  .forEach((file) => {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });
@@ -64,22 +63,22 @@ const modelFiles = [
   'saleItem.js',
   'customer.js',
   'notification.js',
-  'setting.js'
+  'setting.js',
 ];
 
 // Check if all required models are loaded
-modelFiles.forEach(file => {
+modelFiles.forEach((file) => {
   const modelName = path.basename(file, '.js');
   // Convert to PascalCase for model name
   const pascalCaseModelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
-  
+
   if (!db[pascalCaseModelName]) {
     console.warn(`Warning: Model ${pascalCaseModelName} not loaded. Check if the file exists and is properly defined.`);
   }
 });
 
 // Associate models
-Object.keys(db).forEach(modelName => {
+Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
@@ -91,53 +90,53 @@ Object.keys(db).forEach(modelName => {
 const syncDatabase = async () => {
   try {
     console.log('🔄 Preparing database for synchronization...');
-    
+
     // Check if users table exists first
     const [tableExists] = await sequelize.query(
-      "SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_name = 'users');"
+      "SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_name = 'users');",
     );
 
     if (tableExists[0].exists) {
       const [results] = await sequelize.query('SELECT COUNT(*) as count FROM "users" WHERE "created_at" IS NULL;');
       const count = parseInt(results[0].count, 10);
       console.log(`🔍 [DB FIX] Found ${count} users with NULL created_at.`);
-      
+
       if (count > 0) {
         console.log('🛠️  [DB FIX] Updating NULL timestamps for users...');
-        const [updateResult] = await sequelize.query('UPDATE "users" SET "created_at" = NOW(), "updated_at" = NOW() WHERE "created_at" IS NULL;');
-        console.log(`✅ [DB FIX] Update query executed.`);
+        await sequelize.query('UPDATE "users" SET "created_at" = NOW(), "updated_at" = NOW() WHERE "created_at" IS NULL;');
+        console.log('✅ [DB FIX] Update query executed.');
       }
     }
 
     // Check if settings table exists
     const [settingsExists] = await sequelize.query(
-      "SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_name = 'settings');"
+      "SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_name = 'settings');",
     );
 
     if (settingsExists[0].exists) {
       const [results] = await sequelize.query('SELECT COUNT(*) as count FROM "settings" WHERE "created_at" IS NULL;');
       const count = parseInt(results[0].count, 10);
       console.log(`🔍 [DB FIX] Found ${count} settings with NULL created_at.`);
-      
+
       if (count > 0) {
         console.log('🛠️  [DB FIX] Updating NULL timestamps for settings...');
         await sequelize.query('UPDATE "settings" SET "created_at" = NOW(), "updated_at" = NOW() WHERE "created_at" IS NULL;');
-        console.log(`✅ [DB FIX] Settings timestamps updated.`);
+        console.log('✅ [DB FIX] Settings timestamps updated.');
       }
     }
 
     console.log('🔄 Synchronizing models with alter: true...');
-    await sequelize.sync({ 
-      force: false, 
+    await sequelize.sync({
+      force: false,
       alter: true,
-      logging: false // Disable SQL logging during sync to avoid flooding console
+      logging: false, // Disable SQL logging during sync to avoid flooding console
     });
     console.log('✅ Database synchronized.');
-    
+
     // Get setting model via its name in db object
     const Setting = db.Setting;
     if (Setting) {
-      const [setting, created] = await Setting.findOrCreate({
+      const [, created] = await Setting.findOrCreate({
         where: { id: 1 },
         defaults: {
           store_name: 'Cafe Sundus',
@@ -146,8 +145,8 @@ const syncDatabase = async () => {
           language: 'ar',
           tax_rate: 15,
           invoice_prefix: 'INV',
-          invoice_next_number: 1001
-        }
+          invoice_next_number: 1001,
+        },
       });
 
       if (created) {
@@ -155,6 +154,53 @@ const syncDatabase = async () => {
       } else {
         console.log('ℹ️  Default settings already exist.');
       }
+    }
+
+    const User = db.User;
+    if (User) {
+      const ensureUser = async ({ username, email, password, role, fullName }) => {
+        const hashed = await bcrypt.hash(password, 12);
+
+        const existing = await User.findOne({ where: { username }, paranoid: false });
+        if (existing) {
+          if (existing.deletedAt) {
+            await existing.restore();
+          }
+          await existing.update({
+            email,
+            password: hashed,
+            role,
+            fullName,
+            isActive: true,
+          });
+          return;
+        }
+
+        await User.create({
+          username,
+          email,
+          password: hashed,
+          fullName,
+          role,
+          isActive: true,
+        });
+      };
+
+      await ensureUser({
+        username: 'admin',
+        email: 'admin@example.com',
+        password: 'admin123',
+        role: 'admin',
+        fullName: 'Admin',
+      });
+
+      await ensureUser({
+        username: 'team',
+        email: 'team@example.com',
+        password: 'admin',
+        role: 'staff',
+        fullName: 'Team',
+      });
     }
   } catch (err) {
     console.error('❌ Sync failed:', err);
