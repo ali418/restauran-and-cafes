@@ -135,13 +135,8 @@ const apiService = {
   
   // Customer API
   findOrCreateCustomer: async (customerData) => {
-    try {
-      const response = await axiosInstance.post('/customers/api/find-or-create', customerData);
-      return response.data;
-    } catch (error) {
-      handleApiError(error);
-      throw error;
-    }
+    const response = await axiosInstance.post('/customers/api/find-or-create', customerData);
+    return response.data;
   },
   
   // Online Orders
@@ -881,91 +876,6 @@ const apiService = {
       console.error('Error fetching customer report:', error);
       error.userMessage = error.friendlyMessage || 'Failed to load customer report. Please try again later.';
       throw error;
-    }
-  },
-
-  // Notifications API methods
-  getNotifications: async () => {
-    try {
-      const response = await axiosInstance.get('/notifications');
-      console.log('Raw notifications API response:', response);
-      return response.data.data || [];
-    } catch (error) {
-      console.error('Error fetching notifications:', error);
-      // Return mock data if API fails
-      return [
-        {
-          id: 1,
-          type: 'low_stock',
-          title: 'Low Stock Alert',
-          message: 'Apple has low stock',
-          isRead: false,
-          createdAt: new Date().toISOString(),
-          data: { item: 'Apple' }
-        },
-        {
-          id: 2,
-          type: 'new_order',
-          title: 'New Order',
-          message: 'New order #1234',
-          isRead: false,
-          createdAt: new Date().toISOString(),
-          data: { number: '1234' }
-        },
-        {
-          id: 3,
-          type: 'payment_received',
-          title: 'Payment Received',
-          message: 'Payment received from Customer #5678',
-          isRead: false,
-          createdAt: new Date().toISOString(),
-          data: { number: '5678' }
-        }
-      ];
-    }
-  },
-
-  markNotificationAsRead: async (id) => {
-    try {
-      const response = await axiosInstance.patch(`/notifications/${id}/read`);
-      return response.data;
-    } catch (error) {
-      console.error(`Error marking notification ${id} as read:`, error);
-      error.userMessage = error.friendlyMessage || 'Failed to mark notification as read.';
-      throw error;
-    }
-  },
-
-  markAllNotificationsAsRead: async () => {
-    try {
-      const response = await axiosInstance.patch('/notifications/read-all');
-      return response.data;
-    } catch (error) {
-      console.error('Error marking all notifications as read:', error);
-      error.userMessage = error.friendlyMessage || 'Failed to mark all notifications as read.';
-      throw error;
-    }
-  },
-
-  deleteNotification: async (id) => {
-    try {
-      const response = await axiosInstance.delete(`/notifications/${id}`);
-      return response.data;
-    } catch (error) {
-      console.error(`Error deleting notification ${id}:`, error);
-      error.userMessage = error.friendlyMessage || 'Failed to delete notification.';
-      throw error;
-    }
-  },
-
-  getUnreadNotificationsCount: async () => {
-    try {
-      const response = await axiosInstance.get('/notifications/unread-count');
-      return response.data.count || 0;
-    } catch (error) {
-      console.error('Error fetching unread notifications count:', error);
-      // Return mock count if API fails
-      return 3;
     }
   },
 

@@ -197,7 +197,7 @@ const Sales = () => {
       const mapped = (Array.isArray(raw) ? raw : []).map(normalizeSale);
 
       // Filter: include online orders only when accepted or completed
-      let filtered = mapped.filter((s) => {
+      const filtered = mapped.filter((s) => {
         if ((s.source || '').toLowerCase() === 'online') {
           return ['accepted', 'completed'].includes((s.status || '').toLowerCase());
         }

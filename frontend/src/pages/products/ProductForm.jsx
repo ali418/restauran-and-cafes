@@ -271,7 +271,7 @@ const ProductForm = () => {
         console.log('Preparing product data for API:', productData);
 
         // If user selected an image file, upload it first
-        let finalProductData = { ...productData };
+        const finalProductData = { ...productData };
         if (imageFile) {
           console.log('Uploading product image...');
           const uploadResult = await apiService.uploadFile(imageFile);

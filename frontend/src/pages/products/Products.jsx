@@ -58,9 +58,7 @@ import {
 const fallbackProducts = [];
 const fallbackCategories = [{ id: 1, name: 'All' }];
 
-// Helper function to get product image URL
-const getProductImageUrl = (product) => {
-  const placeholderImage = `data:image/svg+xml;utf8,
+const placeholderImage = `data:image/svg+xml;utf8,
   <svg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'>
     <rect width='100%' height='100%' fill='%23f5f5f5'/>
     <g fill='none' stroke='%23cccccc' stroke-width='4'>
@@ -69,7 +67,9 @@ const getProductImageUrl = (product) => {
     </g>
     <text x='200' y='260' font-family='Arial' font-size='18' fill='%23999999' text-anchor='middle'>No Image</text>
   </svg>`;
-  
+
+// Helper function to get product image URL
+const getProductImageUrl = (product) => {
   const raw = product?.image_url || product?.image || product?.imageUrl || '';
   const img = typeof raw === 'string' ? raw.trim() : '';
   if (!img) return placeholderImage;

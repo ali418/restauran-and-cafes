@@ -571,7 +571,7 @@ const OnlineOrder = () => {
           const formattedAddress = data.results[0].formatted_address;
           
           // Extract additional location details if available
-          let locationDetails = [];
+          const locationDetails = [];
           if (data.results[0].address_components) {
             // Try to extract neighborhood, locality, and administrative area
             const components = data.results[0].address_components;
