@@ -166,7 +166,7 @@ const Landing = () => {
                 </Typography>
                 <Typography sx={{ color: 'rgba(255,255,255,0.78)', fontSize: { xs: '1rem', md: '1.1rem' } }}>
                   {isArabic
-                    ? 'إدارة المبيعات، المنتجات، المخزون، العملاء والتقارير في مكان واحد — بهوية زرقاء متوافقة مع ألوان الشركة.'
+                    ? 'منصة واحدة لإدارة المبيعات، المنتجات، المخزون، العملاء والتقارير — بتصميم مرن يتناغم مع هوية مطعمك أو مقهاك البصرية.'
                     : 'Manage sales, products, inventory, customers, and reports in one place — with a brand‑consistent blue theme.'}
                 </Typography>
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5} sx={{ pt: 1 }}>
