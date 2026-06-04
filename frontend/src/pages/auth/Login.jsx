@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link as RouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { saveAuthData } from '../../services/authService';
 import {
-  Avatar,
   Button,
   TextField,
   FormControlLabel,
   Checkbox,
   Link,
-  Grid,
   Box,
   Typography,
   InputAdornment,
@@ -21,11 +19,13 @@ import {
   Stack,
 } from '@mui/material';
 import {
-  LockOutlined as LockOutlinedIcon,
   Visibility,
   VisibilityOff,
+  Person,
+  Lock,
+  Login as LoginIcon,
+  FlashOn,
 } from '@mui/icons-material';
-import { useEffect } from 'react';
 
 // Redux actions
 import { login } from '../../redux/slices/authSlice';
@@ -36,13 +36,14 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  
+  const isRTL = i18n.language && i18n.language.startsWith('ar');
+
   const [formData, setFormData] = useState({
     username: '',
     password: '',
     rememberMe: false,
   });
-  
+
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -56,9 +57,7 @@ const Login = () => {
     const params = new URLSearchParams(location.search || '');
     const u = params.get('u') || params.get('username');
     const p = params.get('p') || params.get('password');
-
     if (!u && !p) return;
-
     setFormData((prev) => ({
       ...prev,
       username: typeof u === 'string' ? u : prev.username,
@@ -67,18 +66,15 @@ const Login = () => {
   }, [location.search]);
 
   const demoAccounts = [
-    { username: 'team', password: 'admin' },
-    { username: 'admin', password: 'admin123' },
+    { username: 'admin', password: 'admin123', label: isRTL ? 'مدير' : 'Admin', color: '#e3a575' },
+    { username: 'team', password: 'admin', label: isRTL ? 'فريق' : 'Team', color: '#114188' },
   ];
 
   const fillDemo = (username, password) => {
-    setFormData((prev) => ({
-      ...prev,
-      username,
-      password,
-    }));
+    setFormData((prev) => ({ ...prev, username, password }));
+    setError('');
   };
-  
+
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
     setFormData({
@@ -86,30 +82,23 @@ const Login = () => {
       [name]: name === 'rememberMe' ? checked : value,
     });
   };
-  
+
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
     try {
-      // Real API login
       const { token, refreshToken, user } = await apiService.login(
         formData.username,
         formData.password
       );
-
-      // Persist auth data
       saveAuthData(token, refreshToken, user, formData.rememberMe);
-
-      // Update Redux store
       dispatch(login(user));
-
-      // Navigate to dashboard or POS for cashier
       if (user && user.role === 'cashier') {
         navigate('/pos');
       } else {
@@ -121,30 +110,104 @@ const Login = () => {
       setLoading(false);
     }
   };
-  
+
+  const inputStyles = {
+    '& .MuiOutlinedInput-root': {
+      borderRadius: '14px',
+      background: 'rgba(255,255,255,0.07)',
+      color: '#fff',
+      transition: 'all 0.3s ease',
+      '& fieldset': {
+        borderColor: 'rgba(255,255,255,0.15)',
+        transition: 'border-color 0.3s ease',
+      },
+      '&:hover fieldset': {
+        borderColor: 'rgba(227, 165, 117, 0.5)',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#e3a575',
+        borderWidth: 2,
+      },
+      '&.Mui-focused': {
+        background: 'rgba(255,255,255,0.1)',
+        boxShadow: '0 0 0 4px rgba(227, 165, 117, 0.1)',
+      },
+    },
+    '& .MuiInputLabel-root': {
+      color: 'rgba(255,255,255,0.5)',
+      fontFamily: '"Tajawal", sans-serif',
+    },
+    '& .MuiInputLabel-root.Mui-focused': {
+      color: '#e3a575',
+    },
+    '& .MuiInputBase-input': {
+      color: '#fff',
+      fontFamily: '"Tajawal", sans-serif',
+    },
+    '& .MuiInputAdornment-root .MuiSvgIcon-root': {
+      color: 'rgba(255,255,255,0.4)',
+    },
+  };
+
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '100%',
-      }}
-    >
-      <Avatar sx={{ m: 1, bgcolor: '#e3a575', width: 56, height: 56 }}>
-        <LockOutlinedIcon sx={{ fontSize: 30, color: '#114188' }} />
-      </Avatar>
-      <Typography component="h1" variant="h5" sx={{ fontFamily: '"Tajawal", sans-serif', fontWeight: 'bold', mb: 3 }}>
-        {t('login')}
-      </Typography>
-      
+    <Box sx={{ width: '100%' }}>
+      {/* Header */}
+      <Box sx={{ textAlign: 'center', mb: 4 }}>
+        <Box sx={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: 64,
+          height: 64,
+          borderRadius: '20px',
+          background: 'linear-gradient(135deg, #e3a575 0%, #c98b57 100%)',
+          boxShadow: '0 12px 40px rgba(227, 165, 117, 0.4)',
+          mb: 2,
+          animation: 'pulse 3s ease-in-out infinite',
+          '@keyframes pulse': {
+            '0%, 100%': { boxShadow: '0 12px 40px rgba(227, 165, 117, 0.4)' },
+            '50%': { boxShadow: '0 12px 60px rgba(227, 165, 117, 0.7)' },
+          },
+        }}>
+          <LoginIcon sx={{ fontSize: 32, color: '#fff' }} />
+        </Box>
+        <Typography
+          component="h1"
+          variant="h4"
+          sx={{
+            fontFamily: '"Tajawal", sans-serif',
+            fontWeight: 800,
+            color: '#fff',
+            mb: 0.5,
+          }}
+        >
+          {isRTL ? 'مرحباً بعودتك!' : 'Welcome back!'}
+        </Typography>
+        <Typography sx={{ color: 'rgba(255,255,255,0.5)', fontFamily: '"Tajawal", sans-serif', fontSize: '0.9rem' }}>
+          {isRTL ? 'سجل الدخول لإدارة نظامك' : 'Sign in to manage your system'}
+        </Typography>
+      </Box>
+
+      {/* Error Alert */}
       {error && (
-        <Alert severity="error" sx={{ mt: 2, width: '100%' }}>
+        <Alert
+          severity="error"
+          sx={{
+            mb: 2,
+            borderRadius: '12px',
+            background: 'rgba(211, 47, 47, 0.15)',
+            border: '1px solid rgba(211, 47, 47, 0.3)',
+            color: '#ff8a80',
+            '& .MuiAlert-icon': { color: '#ff8a80' },
+            fontFamily: '"Tajawal", sans-serif',
+          }}
+        >
           {error}
         </Alert>
       )}
-      
-      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, width: '100%' }}>
+
+      {/* Form */}
+      <Box component="form" onSubmit={handleSubmit} noValidate>
         <TextField
           margin="normal"
           required
@@ -157,16 +220,14 @@ const Login = () => {
           value={formData.username}
           onChange={handleChange}
           disabled={loading}
-          sx={{
-            '& .MuiOutlinedInput-root': {
-              '&.Mui-focused fieldset': {
-                borderColor: '#114188',
-              },
-            },
-            '& .MuiInputLabel-root.Mui-focused': {
-              color: '#114188',
-            },
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Person />
+              </InputAdornment>
+            ),
           }}
+          sx={inputStyles}
         />
         <TextField
           margin="normal"
@@ -181,46 +242,66 @@ const Login = () => {
           onChange={handleChange}
           disabled={loading}
           InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Lock />
+              </InputAdornment>
+            ),
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   edge="end"
+                  sx={{ color: 'rgba(255,255,255,0.4)', '&:hover': { color: '#e3a575' } }}
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             ),
           }}
-          sx={{
-            '& .MuiOutlinedInput-root': {
-              '&.Mui-focused fieldset': {
-                borderColor: '#114188',
-              },
-            },
-            '& .MuiInputLabel-root.Mui-focused': {
-              color: '#114188',
-            },
-          }}
+          sx={inputStyles}
         />
-        <FormControlLabel
-          control={
-            <Checkbox
-              name="rememberMe"
-              checked={formData.rememberMe}
-              onChange={handleChange}
-              disabled={loading}
-              sx={{
-                color: '#114188',
-                '&.Mui-checked': {
-                  color: '#114188',
-                },
-              }}
-            />
-          }
-          label={t('rememberMe')}
-        />
+
+        {/* Remember Me & Forgot Password */}
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 1 }}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                name="rememberMe"
+                checked={formData.rememberMe}
+                onChange={handleChange}
+                disabled={loading}
+                size="small"
+                sx={{
+                  color: 'rgba(255,255,255,0.3)',
+                  '&.Mui-checked': { color: '#e3a575' },
+                }}
+              />
+            }
+            label={
+              <Typography sx={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem', fontFamily: '"Tajawal", sans-serif' }}>
+                {t('rememberMe')}
+              </Typography>
+            }
+          />
+          <Link
+            component={RouterLink}
+            to="/forgot-password"
+            sx={{
+              color: '#e3a575',
+              textDecoration: 'none',
+              fontSize: '0.85rem',
+              fontFamily: '"Tajawal", sans-serif',
+              fontWeight: 600,
+              '&:hover': { textDecoration: 'underline' },
+            }}
+          >
+            {t('forgotYourPassword')}
+          </Link>
+        </Box>
+
+        {/* Submit Button */}
         <Button
           type="submit"
           fullWidth
@@ -228,68 +309,114 @@ const Login = () => {
           sx={{
             mt: 3,
             mb: 2,
-            bgcolor: '#114188',
+            py: 1.6,
+            borderRadius: '14px',
+            background: 'linear-gradient(135deg, #e3a575 0%, #c98b57 100%)',
             color: '#fff',
-            fontWeight: 'bold',
-            fontSize: '1.1rem',
-            py: 1.2,
-            '&:hover': {
-              bgcolor: '#0d2f62',
-            },
+            fontWeight: 800,
+            fontSize: '1.05rem',
             fontFamily: '"Tajawal", sans-serif',
+            letterSpacing: '0.5px',
+            boxShadow: '0 8px 32px rgba(227, 165, 117, 0.4)',
+            border: 'none',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              background: 'linear-gradient(135deg, #f0b890 0%, #d4975e 100%)',
+              boxShadow: '0 12px 40px rgba(227, 165, 117, 0.6)',
+              transform: 'translateY(-2px)',
+            },
+            '&:active': { transform: 'translateY(0)' },
+            '&.Mui-disabled': {
+              background: 'rgba(227, 165, 117, 0.3)',
+              color: 'rgba(255,255,255,0.5)',
+            },
           }}
           disabled={loading}
         >
-          {loading ? <CircularProgress size={24} color="inherit" /> : t('signIn')}
+          {loading ? (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <CircularProgress size={20} sx={{ color: 'rgba(255,255,255,0.8)' }} />
+              <span>{isRTL ? 'جاري تسجيل الدخول...' : 'Signing in...'}</span>
+            </Box>
+          ) : (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <LoginIcon fontSize="small" />
+              <span>{t('signIn')}</span>
+            </Box>
+          )}
         </Button>
 
-        <Box sx={{ mt: 1.5, mb: 0.5 }}>
-          <Typography sx={{ fontWeight: 800, color: '#000' }}>
-            {i18n.language && i18n.language.startsWith('ar') ? 'بيانات تجربة (اضغط للتعبئة):' : 'Demo credentials (click to fill):'}
-          </Typography>
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} sx={{ mt: 1 }}>
+        {/* Demo Accounts Section */}
+        <Box
+          sx={{
+            mt: 1,
+            p: 2.5,
+            borderRadius: '16px',
+            background: 'rgba(255,255,255,0.04)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            position: 'relative',
+            overflow: 'hidden',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: 0, left: 0, right: 0,
+              height: '2px',
+              background: 'linear-gradient(90deg, transparent, rgba(227,165,117,0.5), transparent)',
+            },
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
+            <FlashOn sx={{ color: '#e3a575', fontSize: 18 }} />
+            <Typography sx={{
+              color: 'rgba(255,255,255,0.8)',
+              fontFamily: '"Tajawal", sans-serif',
+              fontWeight: 700,
+              fontSize: '0.85rem',
+            }}>
+              {isRTL ? 'بيانات ديمو (اضغط للتعبئة التلقائية)' : 'Demo accounts (click to auto-fill)'}
+            </Typography>
+          </Box>
+          <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
             {demoAccounts.map((acc) => (
-              <React.Fragment key={acc.username}>
-                <Chip
-                  onClick={() => fillDemo(acc.username, acc.password)}
-                  clickable
-                  label={(i18n.language && i18n.language.startsWith('ar') ? 'اسم المستخدم: ' : 'Username: ') + acc.username}
-                  sx={{ bgcolor: '#114188', color: '#fff', fontWeight: 900 }}
-                />
-                <Chip
-                  onClick={() => fillDemo(acc.username, acc.password)}
-                  clickable
-                  label={(i18n.language && i18n.language.startsWith('ar') ? 'كلمة المرور: ' : 'Password: ') + acc.password}
-                  sx={{ bgcolor: '#114188', color: '#fff', fontWeight: 900 }}
-                />
-              </React.Fragment>
+              <Chip
+                key={acc.username}
+                onClick={() => fillDemo(acc.username, acc.password)}
+                clickable
+                icon={<Person sx={{ fontSize: '16px !important', color: '#fff !important' }} />}
+                label={
+                  <span style={{ fontFamily: '"Tajawal", sans-serif', fontSize: '0.8rem' }}>
+                    {acc.label}: <strong>{acc.username}</strong>
+                  </span>
+                }
+                sx={{
+                  background: `${acc.color}22`,
+                  border: `1px solid ${acc.color}44`,
+                  color: '#fff',
+                  fontWeight: 600,
+                  py: 2,
+                  transition: 'all 0.2s ease',
+                  '&:hover': {
+                    background: `${acc.color}44`,
+                    borderColor: acc.color,
+                    transform: 'scale(1.05)',
+                    boxShadow: `0 4px 16px ${acc.color}44`,
+                  },
+                  '& .MuiChip-icon': { color: `${acc.color} !important` },
+                }}
+              />
             ))}
           </Stack>
+          <Typography sx={{
+            color: 'rgba(255,255,255,0.3)',
+            fontFamily: '"Tajawal", sans-serif',
+            fontSize: '0.75rem',
+            mt: 1,
+          }}>
+            {isRTL
+              ? '🔑 admin: كلمة المرور admin123 | team: كلمة المرور admin'
+              : '🔑 admin: password admin123 | team: password admin'}
+          </Typography>
         </Box>
-        <Grid container sx={{ mt: 1 }}>
-          <Grid item xs>
-            <Link
-              component={RouterLink}
-              to="/login"
-              variant="body2"
-              sx={{ color: '#111', textDecoration: 'none', fontWeight: 800, '&:hover': { textDecoration: 'underline' } }}
-            >
-              {i18n.language && i18n.language.startsWith('ar') ? 'ميزات النظام' : 'System Features'}
-            </Link>
-          </Grid>
-        </Grid>
-        <Grid container>
-          <Grid item xs>
-            <Link 
-              component={RouterLink} 
-              to="/forgot-password" 
-              variant="body2"
-              sx={{ color: '#114188', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
-            >
-              {t('forgotYourPassword')}
-            </Link>
-          </Grid>
-        </Grid>
       </Box>
     </Box>
   );
