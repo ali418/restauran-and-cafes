@@ -609,7 +609,7 @@ const Landing = () => {
       <style dangerouslySetInnerHTML={{ __html: globalStyles }} />
 
       {/* ── Floating WhatsApp ── */}
-      <a className="lp-float-wa" href="https://wa.me/96600000000" target="_blank" rel="noreferrer" title="WhatsApp">
+      <a className="lp-float-wa" href="https://wa.me/256741490119" target="_blank" rel="noreferrer" title="WhatsApp">
         💬
       </a>
 
@@ -647,8 +647,8 @@ const Landing = () => {
           {/* Title */}
           <h1 className="lp-hero-title fade-up delay-1">
             {isAr
-              ? <><span className="gradient-text">أدر مقهاك بذكاء،</span><br />ضاعف مبيعاتك وقلّل الهدر</>
-              : <><span className="gradient-text">Manage Smarter,</span><br />Sell More & Waste Less</>}
+              ? <><span className="gradient-text">أدر مقهاك أو مطعمك</span><br />ضاعف مبيعاتك وقلّل الهدر</>
+              : <><span className="gradient-text">Manage Your Café or Restaurant</span><br />Boost Sales & Reduce Waste</>}
           </h1>
 
           {/* Subtitle */}
@@ -660,7 +660,7 @@ const Landing = () => {
 
           {/* CTA Buttons */}
           <div className="lp-hero-cta fade-up delay-3">
-            <a className="lp-cta-main" href="https://wa.me/96600000000" target="_blank" rel="noreferrer">
+            <a className="lp-cta-main" href="https://wa.me/256741490119" target="_blank" rel="noreferrer">
               💬 {isAr ? 'تواصل معنا الآن' : 'Contact Us Now'}
             </a>
             <button className="lp-cta-outline" onClick={() => scrollTo('preview')}>
@@ -673,16 +673,16 @@ const Landing = () => {
 
           {/* ── 2. QUICK CONTACT ── */}
           <div className="lp-contact-row fade-up delay-4">
-            <a className="lp-contact-chip wa" href="https://wa.me/96600000000" target="_blank" rel="noreferrer">
+            <a className="lp-contact-chip wa" href="https://wa.me/256741490119" target="_blank" rel="noreferrer">
               <span>💬</span> WhatsApp
             </a>
-            <a className="lp-contact-chip tg" href="https://t.me/yourusername" target="_blank" rel="noreferrer">
+            <a className="lp-contact-chip tg" href="https://t.me/key4infotech" target="_blank" rel="noreferrer">
               <span>✈️</span> Telegram
             </a>
-            <a className="lp-contact-chip em" href="mailto:info@cafesystem.com">
+            <a className="lp-contact-chip em" href="mailto:info@key4infotech.com">
               <span>📧</span> {isAr ? 'البريد الإلكتروني' : 'Email'}
             </a>
-            <a className="lp-contact-chip ph" href="tel:+96600000000">
+            <a className="lp-contact-chip ph" href="tel:+256741490119">
               <span>📞</span> {isAr ? 'اتصل بنا' : 'Call Us'}
             </a>
           </div>
@@ -846,7 +846,7 @@ const Landing = () => {
             {isAr ? 'تواصل معنا الآن وسنساعدك في البدء خلال 24 ساعة.' : 'Contact us now and we will help you get started within 24 hours.'}
           </p>
           <div className="lp-final-btns">
-            <a className="lp-cta-main" href="https://wa.me/96600000000" target="_blank" rel="noreferrer">
+            <a className="lp-cta-main" href="https://wa.me/256741490119" target="_blank" rel="noreferrer">
               💬 {isAr ? 'تواصل على واتساب' : 'WhatsApp Us'}
             </a>
             <button className="lp-cta-outline" onClick={() => navigate('/auth/login')}>
@@ -895,11 +895,10 @@ const Landing = () => {
                   : 'Complete management system for restaurants & cafés. From POS to reports & online orders.'}
               </p>
               <div className="lp-footer-social">
-                <a className="lp-social-btn" href="https://wa.me/96600000000" target="_blank" rel="noreferrer">💬</a>
-                <a className="lp-social-btn" href="https://t.me/yourusername" target="_blank" rel="noreferrer">✈️</a>
-                <a className="lp-social-btn" href="https://facebook.com" target="_blank" rel="noreferrer">📘</a>
-                <a className="lp-social-btn" href="https://linkedin.com" target="_blank" rel="noreferrer">💼</a>
-                <a className="lp-social-btn" href="mailto:info@cafesystem.com">📧</a>
+                <a className="lp-social-btn" href="https://wa.me/256741490119" target="_blank" rel="noreferrer">💬</a>
+                <a className="lp-social-btn" href="https://t.me/key4infotech" target="_blank" rel="noreferrer">✈️</a>
+                <a className="lp-social-btn" href="https://www.key4infotech.com/frontend/index.php" target="_blank" rel="noreferrer">🌐</a>
+                <a className="lp-social-btn" href="mailto:info@key4infotech.com">📧</a>
               </div>
             </div>
             {/* Quick links */}
@@ -913,11 +912,11 @@ const Landing = () => {
             {/* Contact */}
             <div>
               <div className="lp-footer-title">{isAr ? 'تواصل معنا' : 'Contact Us'}</div>
-              <a className="lp-footer-link" href="https://wa.me/96600000000" target="_blank" rel="noreferrer">💬 WhatsApp</a>
-              <a className="lp-footer-link" href="https://t.me/yourusername" target="_blank" rel="noreferrer">✈️ Telegram</a>
-              <a className="lp-footer-link" href="mailto:info@cafesystem.com">📧 info@cafesystem.com</a>
-              <a className="lp-footer-link" href="tel:+96600000000">📞 +966 00 000 0000</a>
-              <a className="lp-footer-link" href="https://www.key4infotech.com" target="_blank" rel="noreferrer">🌐 key4infotech.com</a>
+              <a className="lp-footer-link" href="https://wa.me/256741490119" target="_blank" rel="noreferrer">💬 +256 741 490 119</a>
+              <a className="lp-footer-link" href="https://t.me/key4infotech" target="_blank" rel="noreferrer">✈️ Telegram</a>
+              <a className="lp-footer-link" href="mailto:info@key4infotech.com">📧 info@key4infotech.com</a>
+              <a className="lp-footer-link" href="tel:+256741490119">📞 +256 741 490 119</a>
+              <a className="lp-footer-link" href="https://www.key4infotech.com/frontend/index.php" target="_blank" rel="noreferrer">🌐 key4infotech.com</a>
             </div>
           </div>
           {/* Bottom */}
@@ -926,7 +925,7 @@ const Landing = () => {
               © {new Date().getFullYear()} CaféSystem — {isAr ? 'جميع الحقوق محفوظة' : 'All Rights Reserved'}
             </span>
             <span className="lp-footer-copy">
-              {isAr ? 'مدعوم بواسطة' : 'Powered by'} <a href="https://www.key4infotech.com" target="_blank" rel="noreferrer" style={{ color: '#06B6D4', textDecoration: 'none' }}>K4 IT</a>
+              {isAr ? 'مدعوم بواسطة' : 'Powered by'} <a href="https://www.key4infotech.com/frontend/index.php" target="_blank" rel="noreferrer" style={{ color: '#06B6D4', textDecoration: 'none' }}>K4 IT</a>
             </span>
           </div>
         </div>
